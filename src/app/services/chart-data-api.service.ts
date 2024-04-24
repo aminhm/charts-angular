@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ChartDataService {
+export class ChartDataAPIService {
 
   constructor(private http: HttpClient) { }
 

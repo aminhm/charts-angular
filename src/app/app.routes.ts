@@ -8,5 +8,7 @@ export const routes: Routes = [
     },
     {
         path: 'settings', component: SettingsComponent  
-    }
+    },
+    {path: 'view-mode', component: ViewModeComponent  
+}
 ];
