@@ -1,17 +1,16 @@
-<div class="wrapper">
-    <tui-input-range ngSkipHydration
+
+<a style="height: 55px;" [routerLink]="'/settings'">hiiiii</a>
+<div *ngFor="let chartDataModel of chartDataModels; let i = index">
+    <div class="wrapper">
+        <tui-input-range ngSkipHydration
         id="input-range-with-key-steps"
-        [formControl]="chartData.getDateFieldFormControl()"
-        [max]="chartData.getDateFieldMaxValue()"
-        [min]="chartData.getDateFieldMinValue()"
-        [pluralize]="chartData.getDateFieldPluralizeValue()"
+        [formControl]="chartDataModel.getDateFilterFormControl()"
+        [max]="chartDataModel.getDateFilterMaxValue()"
+        [min]="chartDataModel.getDateFilterMinValue()"
     >
         Date Filter
     </tui-input-range>
+    </div>
+    
+<app-chart [chartDataModel]="chartDataModel"></app-chart>
 </div>
-
-<highcharts-chart 
-  [Highcharts]="Highcharts"
-  [options]="chartData.getChartOptions()"
-  style="width: 100%; height: 400px; display: block;"
-></highcharts-chart>

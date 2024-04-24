@@ -1,73 +1,46 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { HighchartsChartModule } from 'highcharts-angular';
-import Highcharts from 'highcharts/es-modules/masters/highcharts.src';
-import { ChartDataService } from '../../services/chart-data.service';
+import { Component} from '@angular/core';
+import { ChartDataAPIService } from '../../services/chart-data-api.service';
 import { Subscription } from 'rxjs';
-import { ChartDataModel } from '../../models/chart-data.interface';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import {TuiInputModule, TuiInputRangeModule, TuiKeySteps} from '@taiga-ui/kit';
+import { ChartDataModel } from '../../models/chart-data.model';
+import { UtilsService } from '../../services/utils.service';
+import { RouterModule } from '@angular/router';
+import { ChartComponent } from '../chart/chart.component';
+import { ChartType } from '../../models/chart-type.enum';
 import { CommonModule } from '@angular/common';
-import { ChartDataType } from '../../models/chart-data-type.enum';
+import { TuiInputModule, TuiInputRangeModule } from '@taiga-ui/kit';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-view-mode',
   standalone: true,
-  imports: [HighchartsChartModule,TuiInputRangeModule,TuiInputModule,ReactiveFormsModule,CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    TuiInputModule,
+    RouterModule,
+  ChartComponent,
+  CommonModule,
+  TuiInputRangeModule,
+  
+],
   templateUrl: './view-mode.component.html',
   styleUrl: './view-mode.component.scss',
 })
 export class ViewModeComponent {
-  dataSubscription!: Subscription;
-  constructor(private chartDataService: ChartDataService) { }
-
-  ngOnInit() {
-    this.getChartDataFromApi()
-    this.chartData.getDateFieldFormControl().valueChanges.subscribe(newValue => {
-      var chartDataDates = this.chartData.getChartDataDates()
-      var chartDataValues = this.chartData.getChartDataValues()
-      this.chartData.changeChartOptionsData(
-        chartDataDates.slice(chartDataDates.indexOf(newValue[0].toString()),chartDataDates.indexOf(newValue[1].toString())+1)
-    ,chartDataValues.slice(chartDataDates.indexOf(newValue[0].toString()),chartDataDates.indexOf(newValue[1].toString())+1))
-    })
-  }
-  Highcharts: typeof Highcharts = Highcharts;
-  chartData: ChartDataModel = new ChartDataModel();
-
-  getChartDataFromApi(): void {
-    this.dataSubscription = this.chartDataService.getChartData().subscribe({
-      next: (data) => {
-        for (let item of data[1]){
-          this.chartData.addChartDataDate(item.date)
-          this.chartData.addChartValues(parseFloat(item.value.toFixed(2)))
-        }
-        this.chartData.setChartDataDates(this.chartData.getChartDataDates().reverse())
-        this.chartData.setChartDataValues(this.chartData.getChartDataValues().reverse())
-        if(data[1][0]){
-          this.chartData.setChartDataCountry(data[1][0].country.value)
-          this.chartData.setChartYaxisTitle(data[1][0].indicator.value)
-        }
-        if(data[0]){
-          this.chartData.setChartTitle(data[0].sourcename)
-        }
-        this.chartData.setChartType('spline')
-        this.chartData.setDateFieldMaxValue()
-        this.chartData.setDateFieldMinValue()
-        this.chartData.setDateFieldFormControl()
-        this.chartData.setChartDataType(ChartDataType.Year)
-        this.chartData.setDateFieldPluralizeValue()
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        this.chartData.setChartOptions()
-      }
+  
+  chartDataModels: ChartDataModel[] = [];
+  chartSubscription!: Subscription;
+  constructor(
+    private utilsService: UtilsService
+  ) { 
+    
+    this.chartSubscription = this.utilsService.chartDataModelsItems$.subscribe(data => {
+      this.chartDataModels = data
     });
   }
 
   ngOnDestroy(): void {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
+    if (this.chartSubscription) {
+      this.chartSubscription.unsubscribe();
     }
   }
 }
