@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <app-date-filter *ngIf="(chartItems$ | async)!.length > 0" ngSkipHydration></app-date-filter>
+        </div>
+    </div>
+    
+<div [style.borderColor]="chartModel.getChartDataColor()" class="chart-container" *ngFor="let chartModel of chartItems$ | async; let i = index">
+
+    
+<app-chart [isFilterEnabled]="true" [chartModel]="chartModel"></app-chart>
+
+</div>
+</div>
