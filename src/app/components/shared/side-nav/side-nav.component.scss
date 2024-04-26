@@ -1,0 +1,40 @@
+::ng-deep .t-wrapper{
+    padding: 0 !important;
+}
+
+button{
+    margin: 0;
+    height: auto !important;
+}
+
+.mat-toolbar{
+    background-color: cornflowerblue;
+    border-radius: 15px;
+    justify-content: space-around;
+    background-color: #FCFCFC;
+    border: 1px solid gray;
+    margin: 15px;
+    padding: 5px;
+  }
+
+  .header-border{
+    padding: 5px;
+    height: 100%;
+    border: 1px solid #12052e;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .content-header-row{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .arrow-back-icon{
+    color: #12052e;
+  }
+
+  .menu-icon{
+    color: #12052e;
+  }

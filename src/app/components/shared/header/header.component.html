@@ -1,0 +1,29 @@
+
+<mat-toolbar>
+    <div class="header-border">
+    <button
+    appearance='flat'
+    tuiButton
+    type="submit"
+    class="tui-space_right-3 tui-space_bottom-3"
+    (click)="changeViewModeActiveMode()"
+    [routerLink]="['view-mode']"
+>
+    <span class="view-mode-span" [style.color]="isViewModeActive ? 'white' : '#949494'">
+        View Mode
+    </span>
+</button>
+<button
+            appearance='flat'
+            tuiButton
+            type="submit"
+            class="tui-space_right-3 tui-space_bottom-3"
+            (click)="changeSettingsActiveMode()"
+            [routerLink]="['settings']"
+        >
+            <span [style.color]="isSettingsActive ? 'white' : '#949494'">
+                Settings
+            </span>
+        </button>
+    </div>
+    </mat-toolbar>
