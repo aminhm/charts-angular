@@ -1,3 +1,7 @@
-<tui-root>
-  <router-outlet></router-outlet>
-</tui-root>
+
+  <tui-root>
+    <app-side-nav *ngIf="showSidebar===true"></app-side-nav>
+    <app-header *ngIf="showSidebar===false"></app-header>
+    <router-outlet></router-outlet>
+  </tui-root>
+

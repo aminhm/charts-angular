@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ViewModeComponent } from './components/view-mode/view-mode.component';
-import { SettingsComponent } from './components/settings/settings.component';
+import { ViewModeComponent } from './components/pages/view-mode/view-mode.component';
+import { SettingsComponent } from './components/pages/settings/settings.component';
 
 export const routes: Routes = [
     {
