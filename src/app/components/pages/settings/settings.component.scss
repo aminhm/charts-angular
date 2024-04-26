@@ -1,0 +1,32 @@
+button{
+    margin: 0;
+    width: 100%;
+}
+
+.add-chart-button-row{
+    justify-content: center;
+}
+
+.chart-container{
+    padding-top: 25px;
+    padding-bottom: 25px
+}
+
+
+.edit-remove-col{
+    align-content: center;
+    padding: 25px;
+}
+
+.remove-span{
+    color: red;
+    font-weight: bold;
+}
+
+.chart-container-row{
+    margin: 0 !important;
+    padding: 5px;
+    border: 2px solid;
+    border-radius: 15px;
+    margin-top: 25px;
+}
