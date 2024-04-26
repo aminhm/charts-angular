@@ -1,0 +1,24 @@
+<tui-hosted-dropdown
+    tuiDropdownAlign="left"
+    [content]="picker"
+    [tuiDropdownMaxHeight]="999"
+>
+    <button
+        appearance=""
+        automation-id="color-picker__button"
+        tuiButton
+        type="button"
+        [style.background]="background"
+        [style.color]="background"
+    >
+    </button>
+</tui-hosted-dropdown>
+<ng-template
+    #picker
+    let-activeZone
+>
+    <tui-color-selector
+        [tuiActiveZoneParent]="activeZone"
+        [(color)]="color"
+    ></tui-color-selector>
+</ng-template>
