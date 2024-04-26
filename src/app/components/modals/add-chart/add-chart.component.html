@@ -1,25 +1,15 @@
 
-<button
-size="l"
-tuiButton
-tuiHintDirection="top"
-type="button"
-(click)="openAddChartModal()"
->
-Show
-</button>
+
 
 <div class="container">
 <ng-template
 let-observer
 [tuiDialogOptions]="{label: 'Add Chart', size: 'l'}"
 [(tuiDialog)]="isAddChartModalOpen"
+
 >
-<div style="   
-display: block;position: sticky;
-    top: 0;
-    z-index: 1;background: white;" class="row">
-<app-chart [chartDataModel]="chartDataModel"></app-chart>
+<div class="row chart-in-header">
+<app-chart (chartRefOutput)="setChartRef($event)" [chartModel]="chartModel"></app-chart>
     </div>
     <div class="row">
 <form 
@@ -36,7 +26,7 @@ display: block;position: sticky;
     </tui-input>
     </div>
     <div class="col-md-2">
-        <app-color-picker (colorEvent) = "receiveTitleColorFromChild($event)"></app-color-picker>
+        <app-color-picker [color]="'#000000'" (colorEvent) = "receiveTitleColorFromChild($event)"></app-color-picker>
     </div>
 </div>
     
@@ -51,7 +41,7 @@ display: block;position: sticky;
     </tui-input>
     </div>
     <div class="col-md-2">
-        <app-color-picker (colorEvent) = "receiveYaxisColorFromChild($event)"></app-color-picker>
+        <app-color-picker [color]="'#000000'" (colorEvent) = "receiveYaxisColorFromChild($event)"></app-color-picker>
     </div>
 </div>
     
@@ -67,11 +57,11 @@ display: block;position: sticky;
     </tui-input>
     </div>
     <div class="col-md-2">
-        <app-color-picker (colorEvent) = "receiveLabelColorFromChild($event)"></app-color-picker>
+        <app-color-picker [color]="'#000000'" (colorEvent) = "receiveLabelColorFromChild($event)"></app-color-picker>
     </div>
 </div>
 
-<div class="row" style="margin-top: 25px;">
+<div class="row background-data-color-row">
     <div class="col-md-6">
         <div class="row">
             <div class="col-sm-6">
@@ -88,19 +78,19 @@ display: block;position: sticky;
                 <p>Data Color:</p>
             </div>
             <div class="col-sm-6">
-                <app-color-picker (colorEvent) = "receiveDataColorFromChild($event)"></app-color-picker>
+                <app-color-picker [color]="'#000000'" (colorEvent) = "receiveDataColorFromChild($event)"></app-color-picker>
             </div>
         </div>
     </div>
 </div> 
 
-<div class="row" style="margin-top: 25px;">
-            <div style="text-align: end;" class="col-sm-6">
+<div class="row chart-type-row">
+            <div class="col-sm-6 chart-type-col-title">
                 <p>
                     Chart Type:
                 </p>
             </div>
-            <div style="text-align: start;" class="col-sm-6">
+            <div class="col-sm-6 chart-type-col-button">
                 <tui-hosted-dropdown [content]="chartTypeDropDown">
                     <button
                         tuiButton
@@ -113,7 +103,7 @@ display: block;position: sticky;
                 <ng-template #chartTypeDropDown>
                     <tui-data-list role="menu">
                         <tui-opt-group
-                            *ngFor="let chartType of utilsService.getChartType()"
+                            *ngFor="let chartType of sharedService.getChartType()"
                         >
                             <a (click)="changeChartType(chartType)"
                             role="menuitemradio"
@@ -130,8 +120,8 @@ display: block;position: sticky;
     
 
 
-<div class="row" style="margin-top: 55px;margin-bottom: 15px;">
-    <span style="font-weight: bold;">Data Insertion</span>
+<div class="row data-insertion-title-row">
+    <span class="data-insertion-title-span">Data Insertion</span>
 </div>
 
 <div class="row">
@@ -144,7 +134,7 @@ display: block;position: sticky;
 >
 <div formArrayName="valueFormsFields">
 
-    <div style="padding-top: 25px;" *ngFor="let field of  valueFields.controls; let i = index">
+    <div class="field-container" *ngFor="let field of  valueFields.controls; let i = index">
 <tui-input-number (ngModelChange)="updateValueForm($event,i)"
         [formControlName]="i"
         
@@ -164,8 +154,8 @@ display: block;position: sticky;
 >
 <div formArrayName="dateFormsFields">
 
-    <div style="padding-top: 25px;" *ngFor="let field of dateFields.controls; let i = index">
-        <div class="row" style="margin-top: 0 !important;">
+    <div class="field-container" *ngFor="let field of dateFields.controls; let i = index">
+        <div class="row date-remove-row">
             <div class="col-md-8">
 
     <tui-input-date (ngModelChange)="updateDateForm($event,i)"
@@ -175,15 +165,13 @@ display: block;position: sticky;
     </tui-input-date>
 </div>
     <div class="col-md-4">
-            <button style="height: 100%;
-            width: 100%;
-            margin: 0;" (click)="removeData(i)"
+            <button (click)="removeData(i)"
             appearance="flat"
             tuiButton
             type="button"
             class="tui-space_right-3 tui-space_bottom-3"
         >
-            <span style="color: red;font-weight: bold;">
+            <span class="remove-cancel-span">
                 Remove
             </span>
         </button>
@@ -201,25 +189,39 @@ display: block;position: sticky;
 
 </div>
 
-<button style="margin-top: 25px;"
+<button 
 (click)="addDataField()"
     appearance="primary"
     tuiButton
     type="button"
-    class="tui-space_right-3 tui-space_bottom-3"
+    class="tui-space_right-3 tui-space_bottom-3 add-button"
 >
     Add +
 </button>
     
-    
-    <p  style="margin-top: 55px !important;">
-        <button (click)="addChart()"
+    <div class="row">
+        <div class="col-md-6">
+                <button (click)="addChart()"
+                    tuiButton
+                    type="submit"
+                >
+                    Submit
+                </button>
+        </div>
+        <div class="col-md-6">
+            <button
+            appearance="flat"
             tuiButton
             type="submit"
+            class="tui-space_right-3 tui-space_bottom-3"
         >
-            Submit
+            <span class="remove-cancel-span">
+                Cancel
+            </span>
         </button>
-    </p>
+        </div>
+    </div>
+    
 </form>
 </div>
 </ng-template>
