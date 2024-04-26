@@ -1,0 +1,16 @@
+<form
+    class="b-form"
+    [formGroup]="dateForm"
+>
+    <tui-input-date-range
+        formControlName="dateValue"
+        tuiUnfinishedValidator="Finish filling the field"
+        (ngModelChange)="dateChanges($event)"
+    >
+        Choose dates
+        <input
+            placeholder="From - To"
+            tuiTextfield
+        />
+    </tui-input-date-range>
+</form>
