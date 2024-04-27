@@ -9,10 +9,11 @@
     (click)="changeViewModeActiveMode()"
     [routerLink]="['view-mode']"
 >
-    <span class="view-mode-span" [style.color]="isViewModeActive ? 'white' : '#949494'">
+    <span class="view-mode-span" [style.color]="isViewModeActive ? '#12052e' : '#949494'">
         View Mode
     </span>
 </button>
+<img src="./../../../../assets/images/logo.jpg" alt="">
 <button
             appearance='flat'
             tuiButton
@@ -21,7 +22,7 @@
             (click)="changeSettingsActiveMode()"
             [routerLink]="['settings']"
         >
-            <span [style.color]="isSettingsActive ? 'white' : '#949494'">
+            <span [style.color]="isSettingsActive ? '#12052e' : '#949494'">
                 Settings
             </span>
         </button>

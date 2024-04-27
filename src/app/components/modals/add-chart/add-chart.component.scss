@@ -2,7 +2,6 @@
 .col-md-2{
     text-align: -webkit-center;
     align-content: center;
-    padding-bottom: 10px;
 }
 
 .col-md-10{
@@ -13,6 +12,15 @@
     text-align: -webkit-center;
     place-items: center;
     margin-top: 15px;
+}
+
+.remove-button{
+    width: 100%;
+    padding-top: 25px;
+}
+
+::ng-deep .t-wrapper{
+    padding: 0 !important;
 }
 
 p{
@@ -79,4 +87,8 @@ app-color-picker{
 
 .background-data-color-row{
     margin-top: 25px;
+}
+
+.col-md-8{
+    padding: 0;
 }

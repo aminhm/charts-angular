@@ -124,7 +124,7 @@ let-observer
     <span class="data-insertion-title-span">Data Insertion</span>
 </div>
 
-<div class="row">
+<div class="row" *ngFor="let field of  valueFields.controls; let i = index">
 
     <div class="col-md-5">
         <form 
@@ -134,7 +134,7 @@ let-observer
 >
 <div formArrayName="valueFormsFields">
 
-    <div class="field-container" *ngFor="let field of  valueFields.controls; let i = index">
+    <div class="field-container">
 <tui-input-number (ngModelChange)="updateValueForm($event,i)"
         [formControlName]="i"
         
@@ -146,7 +146,7 @@ let-observer
 </form>
     </div>
     
-    <div class="col-md-7">
+    <div class="col-md-5">
         <form 
     [formGroup]="data.dateForms"
     (ngSubmit)="observer.complete()"
@@ -154,36 +154,35 @@ let-observer
 >
 <div formArrayName="dateFormsFields">
 
-    <div class="field-container" *ngFor="let field of dateFields.controls; let i = index">
-        <div class="row date-remove-row">
-            <div class="col-md-8">
+    <div class="field-container">
 
     <tui-input-date (ngModelChange)="updateDateForm($event,i)"
         [formControlName]="i"
     >
         Choose a date
     </tui-input-date>
-</div>
-    <div class="col-md-4">
-            <button (click)="removeData(i)"
-            appearance="flat"
-            tuiButton
-            type="button"
-            class="tui-space_right-3 tui-space_bottom-3"
-        >
-            <span class="remove-cancel-span">
-                Remove
-            </span>
-        </button>
-        
-    </div>
+    
         </div>
 
     
 </div>
-</div>
+
 </form>
     </div>
+
+    <div class="col-md-2">
+        <button (click)="removeData(i)"
+        appearance="flat"
+        tuiButton
+        type="button"
+        class="tui-space_right-3 tui-space_bottom-3 remove-button"
+    >
+        <span class="remove-cancel-span">
+            Remove
+        </span>
+    </button>
+    
+</div>
     
 
 
