@@ -1,3 +1,6 @@
+/**
+ * Represents a component for managing user settings.
+ */
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AddChartComponent } from '../../modals/add-chart/add-chart.component';
@@ -26,44 +29,75 @@ import { RemoveChartAction } from '../../../ngxs/chart/chart.action';
   styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
+  /**
+   * Observable representing the chart items.
+   */
   @Select(ChartSelectors.chartItems) chartItems$!: Observable<ChartModel[]>;
+  /**
+ * ViewChild decorators for accessing child components.
+ */
   @ViewChild(AddChartComponent) addChartComponent!: AddChartComponent;
   @ViewChild(EditChartComponent) editChartComponent!: EditChartComponent;
+  /**
+   * Index of the chart data model for editing.
+   */
   indexChartDataModelForEdit: number = 0;
-  chartDataModelForEdit : ChartModel = new ChartModel();
+  /**
+   * Chart data model for editing.
+   */
+  chartDataModelForEdit: ChartModel = new ChartModel();
 
   constructor(private store: Store) {
   }
 
+  /**
+   * Flag to indicate if the add chart modal is open.
+   */
   isAddChartModalOpen = false;
+  /**
+   * Flag to indicate if the edit chart modal is open.
+   */
   isEditChartModalOpen = false;
-openAddChartModal(): void {
-  this.isAddChartModalOpen = false;
-  setTimeout(() => {
-    this.isAddChartModalOpen = true;
-  }, 100);
-  setTimeout(() => {
-    this.addChartComponent.isAddChartModalOpen=true;
-  }, 100);
-  
-}
 
-openEditChartModal(chartDataModelForEdit:ChartModel,index : number): void {
-  this.indexChartDataModelForEdit = index;
-  this.chartDataModelForEdit = chartDataModelForEdit;
-  this.isEditChartModalOpen = false;
-  setTimeout(() => {
-    this.isEditChartModalOpen = true;
-    
-  }, 5);
-  setTimeout(() => {
-    this.editChartComponent.isAddChartModalOpen=true;
-  }, 5);
-}
-
-
-  removeChart(index:number){
-    this.store.dispatch(new RemoveChartAction(index));
+  /**
+   * Opens the add chart modal.
+   */
+  openAddChartModal(): void {
+    this.isAddChartModalOpen = false;
+    // Delay before setting the modal to open to allow for reseting the component
+    setTimeout(() => {
+      this.isAddChartModalOpen = true;
+    }, 100);
+    // Ensure the addChartComponent's modal flag is also set to true
+    setTimeout(() => {
+      this.addChartComponent.isAddChartModalOpen = true;
+    }, 100);
   }
 
+  /**
+   * Opens the edit chart modal.
+   * @param chartDataModelForEdit The chart data model to be edited.
+   * @param index The index of the chart data model.
+   */
+  openEditChartModal(chartDataModelForEdit: ChartModel, index: number): void {
+    this.indexChartDataModelForEdit = index;
+    this.chartDataModelForEdit = chartDataModelForEdit;
+    this.isEditChartModalOpen = false;
+    // Delay before setting the modal to open to allow for reseting the component
+    setTimeout(() => {
+      this.isEditChartModalOpen = true;
+    }, 5);
+    // Ensure the editChartComponent's modal flag is also set to true
+    setTimeout(() => {
+      this.editChartComponent.isAddChartModalOpen = true;
+    }, 5);
+  }
+
+  /**
+   * Removes a chart by dispatching a remove chart action.
+   * @param index The index of the chart to be removed.
+   */
+  removeChart(index: number) {
+    this.store.dispatch(new RemoveChartAction(index));
+  }
 }

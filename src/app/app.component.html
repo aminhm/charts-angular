@@ -1,7 +1,25 @@
+<!-- 
+    This HTML structure represents the root component of the application.
+    It is enclosed within the <tui-root> element.
+-->
+<tui-root>
+  <!-- 
+      This section includes the side navigation component.
+      It is conditionally rendered using *ngIf directive based on the value of the 'showSidebar' property.
+      When 'showSidebar' is true, the side navigation is displayed.
+  -->
+  <app-side-nav *ngIf="showSidebar === true"></app-side-nav>
 
-  <tui-root>
-    <app-side-nav *ngIf="showSidebar===true"></app-side-nav>
-    <app-header *ngIf="showSidebar===false"></app-header>
-    <router-outlet></router-outlet>
-  </tui-root>
+  <!-- 
+      This section includes the header component.
+      It is conditionally rendered using *ngIf directive based on the value of the 'showSidebar' property.
+      When 'showSidebar' is false, the header is displayed.
+  -->
+  <app-header *ngIf="showSidebar === false"></app-header>
 
+  <!-- 
+      This section represents the dynamic content area where the routed components are rendered.
+      The <router-outlet> directive is used to render the components based on the current route.
+  -->
+  <router-outlet></router-outlet>
+</tui-root>

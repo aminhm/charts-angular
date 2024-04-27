@@ -1,5 +1,7 @@
+/**
+ * Represents a shared service providing utility functions and data.
+ */
 import { Injectable } from '@angular/core';
-
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +10,15 @@ export class SharedService {
 
   constructor() { }
 
-  public months = ['January','February','March','April','May','June','July','August','September','October','November','December']
-  public days = ['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday']
+  // Array containing types of charts
+  public chartTypes = ['Area', 'Line', 'Spline', 'AreaSpline']
 
-  public chartDateTypes = ['Yearly','Monthly','Daily']
-  public chartTypes = ['Area','Line','Spline','AreaSpline']
-
-  getChartDateTypes(){
-    return this.chartDateTypes
-  }
-
-  getChartType(){
+  /**
+   * Gets the array of chart types.
+   * @returns An array containing types of charts.
+   */
+  getChartType() {
     return this.chartTypes
-  }
-
-  getMonths(){
-    return this.months
-  }
-  getDays(){
-    return this.days
   }
 
 }

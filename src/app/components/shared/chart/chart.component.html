@@ -1,6 +1,6 @@
-
-<highcharts-chart
-[callbackFunction]="chartCallback"
-  [Highcharts]="Highcharts"
-  [options]="chartModel.getChartOptions()"
-></highcharts-chart>
+<!-- 
+  Represents a Highcharts chart component.
+  Binds the Highcharts chart instance and options to display a chart.
+-->
+<highcharts-chart [callbackFunction]="chartCallback" [Highcharts]="Highcharts"
+  [options]="chartModel.getChartOptions()"></highcharts-chart>

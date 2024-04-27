@@ -17,20 +17,20 @@ export const environment = {
 };
 export const appConfig: ApplicationConfig = {
   providers: [provideAnimations(), provideRouter(routes), provideClientHydration(),
-    provideHttpClient(
-      withFetch()
-    ), 
-    importProvidersFrom(TuiRootModule), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(),
-    importProvidersFrom(
-      NgxsModule.forRoot([ChartState,DateFilterState], {
-        developmentMode: !environment.production,
-      })
-    ),
-    importProvidersFrom(
-      NgxsReduxDevtoolsPluginModule.forRoot({
-        disabled: environment.production,
-      })
-    ),
+  provideHttpClient(
+    withFetch()
+  ),
+  importProvidersFrom(TuiRootModule), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(),
+  importProvidersFrom(
+    NgxsModule.forRoot([ChartState, DateFilterState], {
+      developmentMode: !environment.production,
+    })
+  ),
+  importProvidersFrom(
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      disabled: environment.production,
+    })
+  ),
   ],
 };
 

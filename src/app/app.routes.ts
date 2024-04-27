@@ -4,11 +4,12 @@ import { SettingsComponent } from './components/pages/settings/settings.componen
 
 export const routes: Routes = [
     {
-        path: '', component: ViewModeComponent  
+        path: '', component: ViewModeComponent
     },
     {
-        path: 'settings', component: SettingsComponent  
+        path: 'settings', component: SettingsComponent
     },
-    {path: 'view-mode', component: ViewModeComponent  
-}
+    {
+        path: 'view-mode', component: ViewModeComponent
+    }
 ];

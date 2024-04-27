@@ -1,228 +1,160 @@
-
-
-
+<!-- Represents the modal (TUI Dialog) for editing and managing a chart -->
 <div class="container">
-    <ng-template
-    let-observer
-    [tuiDialogOptions]="{label: 'Edit Chart', size: 'l'}"
-    [(tuiDialog)]="isAddChartModalOpen"
-    
-    >
-    <div class="row chart-in-header">
-    <app-chart (chartRefOutput)="setChartRef($event)" [chartModel]="chartModel"></app-chart>
+    <ng-template let-observer [tuiDialogOptions]="{label: 'Edit Chart', size: 'l'}" [(tuiDialog)]="isAddChartModalOpen">
+        <!-- Chart display section -->
+        <div class="row chart-in-header">
+            <app-chart (chartRefOutput)="setChartRef($event)" [chartModel]="chartModel"></app-chart>
         </div>
+        <!-- Form section for chart properties -->
         <div class="row">
-    <form 
-        [formGroup]="forms"
-        (ngSubmit)="observer.complete()"
-    >
-    <div class="row chart-title-row">
-        <div class="col-md-10 chart-title-col">
-    <tui-input
-            formControlName="chartTitleForm"
-            tuiAutoFocus
-        >
-            Chart Title:
-        </tui-input>
-        </div>
-        <div class="col-md-2 color-picker-col">
-            <app-color-picker [color]="titleColor" (colorEvent) = "receiveTitleColorFromChild($event)"></app-color-picker>
-        </div>
-    </div>
-        
-    
-    <div class="row chart-YaxisTitle-row">
-        <div class="col-md-10 chart-YaxisTitle-col">
-            <tui-input
-            formControlName="chartYaxisForm"
-            tuiAutoFocus
-        >
-            Chart Y Axis Title:
-        </tui-input>
-        </div>
-        <div class="col-md-2 color-picker-col">
-            <app-color-picker [color]="yAxisColor" (colorEvent) = "receiveYaxisColorFromChild($event)"></app-color-picker>
-        </div>
-    </div>
-        
-        
-    
-    <div class="row chart-label-row">
-        <div class="col-md-10 chart-label-col">
-            <tui-input
-            formControlName="chartLabelForm"
-            tuiAutoFocus
-        >
-            Chart Data Label:
-        </tui-input>
-        </div>
-        <div class="col-md-2 color-picker-col">
-            <app-color-picker [color]="labelColor" (colorEvent) = "receiveLabelColorFromChild($event)"></app-color-picker>
-        </div>
-    </div>
-    
-    <div class="row background-data-color-row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-sm-6">
-                    <p>Background Color:</p>
+            <form [formGroup]="forms" (ngSubmit)="observer.complete()">
+                <!-- Chart title input -->
+                <div class="row chart-title-row">
+                    <div class="col-md-10 chart-title-col">
+                        <tui-input formControlName="chartTitleForm" tuiAutoFocus>
+                            Chart Title:
+                        </tui-input>
+                    </div>
+                    <!-- Color picker for chart title -->
+                    <div class="col-md-2 color-picker-col">
+                        <app-color-picker [color]="titleColor"
+                            (colorEvent)="receiveTitleColorFromChild($event)"></app-color-picker>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <app-color-picker [color]="backgroundColor" (colorEvent) = "receiveBackgroundColorFromChild($event)"></app-color-picker>
+                <!-- Chart Y Axis title input -->
+                <div class="row chart-YaxisTitle-row">
+                    <div class="col-md-10 chart-YaxisTitle-col">
+                        <tui-input formControlName="chartYaxisForm" tuiAutoFocus>
+                            Chart Y Axis Title:
+                        </tui-input>
+                    </div>
+                    <!-- Color picker for chart Y Axis title -->
+                    <div class="col-md-2 color-picker-col">
+                        <app-color-picker [color]="yAxisColor"
+                            (colorEvent)="receiveYaxisColorFromChild($event)"></app-color-picker>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-sm-6">
-                    <p>Data Color:</p>
+                <!-- Chart data label input -->
+                <div class="row chart-label-row">
+                    <div class="col-md-10 chart-label-col">
+                        <tui-input formControlName="chartLabelForm" tuiAutoFocus>
+                            Chart Data Label:
+                        </tui-input>
+                    </div>
+                    <!-- Color picker for chart data label -->
+                    <div class="col-md-2 color-picker-col">
+                        <app-color-picker [color]="labelColor"
+                            (colorEvent)="receiveLabelColorFromChild($event)"></app-color-picker>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <app-color-picker [color]="dataColor" (colorEvent) = "receiveDataColorFromChild($event)"></app-color-picker>
+                <!-- Background color and data color selection -->
+                <div class="row background-data-color-row">
+                    <div class="col-md-6">
+                        <!-- Background color picker -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Background Color:</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <app-color-picker [color]="backgroundColor"
+                                    (colorEvent)="receiveBackgroundColorFromChild($event)"></app-color-picker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Data color picker -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Data Color:</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <app-color-picker [color]="dataColor"
+                                    (colorEvent)="receiveDataColorFromChild($event)"></app-color-picker>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div> 
-    
-    <div class="row chart-type-row">
-                <div class="col-sm-6 chart-type-col-title">
-                    <p>
-                        Chart Type:
-                    </p>
+                <!-- Chart type selection -->
+                <div class="row chart-type-row">
+                    <div class="col-sm-6 chart-type-col-title">
+                        <p>
+                            Chart Type:
+                        </p>
+                    </div>
+                    <div class="col-sm-6 chart-type-col-button">
+                        <!-- Dropdown for selecting chart type -->
+                        <tui-hosted-dropdown [content]="chartTypeDropDown">
+                            <button tuiButton type="button" [iconRight]="arrow">
+                                {{chartType}}
+                            </button>
+                        </tui-hosted-dropdown>
+                        <ng-template #chartTypeDropDown>
+                            <tui-data-list role="menu">
+                                <!-- Dropdown options for chart types -->
+                                <tui-opt-group *ngFor="let chartType of sharedService.getChartType()">
+                                    <a (click)="changeChartType(chartType)" role="menuitemradio" tuiOption>
+                                        {{ chartType }}
+                                    </a>
+                                </tui-opt-group>
+                            </tui-data-list>
+                        </ng-template>
+                    </div>
                 </div>
-                <div class="col-sm-6 chart-type-col-button">
-                    <tui-hosted-dropdown [content]="chartTypeDropDown">
-                        <button
-                            tuiButton
-                            type="button"
-                            [iconRight]="arrow"
-                        >
-                        {{chartType}}
+                <!-- Data insertion section -->
+                <div class="row data-insertion-title-row">
+                    <span class="data-insertion-title-span">Data Insertion</span>
+                </div>
+                <!-- Form fields for entering data values and dates -->
+                <div class="row" *ngFor="let field of  valueFields.controls; let i = index">
+                    <div class="col-md-5">
+                        <!-- Form field for data value -->
+                        <form [formGroup]="data.valueForms" (ngSubmit)="observer.complete()"
+                            [tuiTextfieldCleaner]="true">
+                            <div formArrayName="valueFormsFields">
+                                <div class="field-container">
+                                    <tui-input-number (ngModelChange)="updateValueForm($event,i)" [formControlName]="i">
+                                        Value {{(i+1).toString()}}
+                                    </tui-input-number>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <!-- Form field for data date -->
+                        <form [formGroup]="data.dateForms" (ngSubmit)="observer.complete()"
+                            [tuiTextfieldCleaner]="true">
+                            <div formArrayName="dateFormsFields">
+                                <div class="field-container">
+                                    <tui-input-date (ngModelChange)="updateDateForm($event,i)" [formControlName]="i">
+                                        Choose a date
+                                    </tui-input-date>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Remove button for each data entry -->
+                    <div class="col-md-2">
+                        <button (click)="removeData(i)" appearance="flat" tuiButton type="button"
+                            class="tui-space_right-3 tui-space_bottom-3 remove-button">
+                            <span class="remove-cancel-span">Remove</span>
                         </button>
-                    </tui-hosted-dropdown>
-                    <ng-template #chartTypeDropDown>
-                        <tui-data-list role="menu">
-                            <tui-opt-group
-                                *ngFor="let chartType of sharedService.getChartType()"
-                            >
-                                <a (click)="changeChartType(chartType)"
-                                role="menuitemradio"
-                                tuiOption
-                                >
-                                    {{ chartType }}
-                                </a>
-                            </tui-opt-group>
-                        </tui-data-list>
-                    </ng-template>
+                    </div>
                 </div>
-            </div>
-        
-        
-    
-    
-    <div class="row data-insertion-title-row">
-        <span class="data-insertion-title-span">Data Insertion</span>
-    </div>
-    
-    <div class="row" *ngFor="let field of  valueFields.controls; let i = index">
-
-        <div class="col-md-5">
-            <form 
-        [formGroup]="data.valueForms"
-        (ngSubmit)="observer.complete()"
-        [tuiTextfieldCleaner]="true"
-    >
-    <div formArrayName="valueFormsFields">
-    
-        <div class="field-container">
-    <tui-input-number (ngModelChange)="updateValueForm($event,i)"
-            [formControlName]="i"
-            
-        >
-        Value {{(i+1).toString()}}
-        </tui-input-number>
-    </div>
-    </div>
-    </form>
+                <!-- Button for adding new data entry -->
+                <button (click)="addDataField()" appearance="primary" tuiButton type="button"
+                    class="tui-space_right-3 tui-space_bottom-3 update-button">Add +</button>
+                <!-- Buttons for submitting or canceling changes -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <button (click)="updateChart()" tuiButton type="submit">Submit</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button appearance="flat" tuiButton type="submit" class="tui-space_right-3 tui-space_bottom-3">
+                            <span class="remove-cancel-span">Cancel</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-        
-        <div class="col-md-5">
-            <form 
-        [formGroup]="data.dateForms"
-        (ngSubmit)="observer.complete()"
-        [tuiTextfieldCleaner]="true"
-    >
-    <div formArrayName="dateFormsFields">
-    
-        <div class="field-container">
-    
-        <tui-input-date (ngModelChange)="updateDateForm($event,i)"
-            [formControlName]="i"
-        >
-            Choose a date
-        </tui-input-date>
-        
-            </div>
-    
-        
-    </div>
-    
-    </form>
-        </div>
-    
-        <div class="col-md-2">
-            <button (click)="removeData(i)"
-            appearance="flat"
-            tuiButton
-            type="button"
-            class="tui-space_right-3 tui-space_bottom-3 remove-button"
-        >
-            <span class="remove-cancel-span">
-                Remove
-            </span>
-        </button>
-        
-    </div>
-        
-    
-    
-    </div>
-    
-    <button
-    (click)="addDataField()"
-        appearance="primary"
-        tuiButton
-        type="button"
-        class="tui-space_right-3 tui-space_bottom-3 update-button"
-    >
-        Add +
-    </button>
-        
-        
-    <div class="row">
-        <div class="col-md-6">
-                <button (click)="updateChart()"
-                    tuiButton
-                    type="submit"
-                >
-                    Submit
-                </button>
-        </div>
-        <div class="col-md-6">
-            <button
-            appearance="flat"
-            tuiButton
-            type="submit"
-            class="tui-space_right-3 tui-space_bottom-3"
-        >
-            <span class="remove-cancel-span">
-                Cancel
-            </span>
-        </button>
-        </div>
-    </div>
-    </form>
-    </div>
     </ng-template>
-    </div>
-    
+</div>

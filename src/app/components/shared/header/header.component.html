@@ -1,30 +1,24 @@
-
+<!-- This is the toolbar component for the application header -->
 <mat-toolbar>
     <div class="header-border">
-    <button
-    appearance='flat'
-    tuiButton
-    type="submit"
-    class="tui-space_right-3 tui-space_bottom-3"
-    (click)="changeViewModeActiveMode()"
-    [routerLink]="['view-mode']"
->
-    <span class="view-mode-span" [style.color]="isViewModeActive ? '#12052e' : '#949494'">
-        View Mode
-    </span>
-</button>
-<img src="./../../../../assets/images/logo.jpg" alt="">
-<button
-            appearance='flat'
-            tuiButton
-            type="submit"
-            class="tui-space_right-3 tui-space_bottom-3"
-            (click)="changeSettingsActiveMode()"
-            [routerLink]="['settings']"
-        >
+        <!-- Button for View Mode -->
+        <button appearance='flat' tuiButton type="submit" class="tui-space_right-3 tui-space_bottom-3"
+            (click)="changeViewModeActiveMode()" [routerLink]="['view-mode']">
+            <!-- Span for View Mode text -->
+            <span class="view-mode-span" [style.color]="isViewModeActive ? '#12052e' : '#949494'">
+                View Mode
+            </span>
+        </button>
+        <!-- Image Logo -->
+        <img src="/charts-angular-build/assets/images/logo.jpg" alt="">
+        <!-- Button for Settings -->
+        <button appearance='flat' tuiButton type="submit" class="tui-space_right-3 tui-space_bottom-3"
+            (click)="changeSettingsActiveMode()" [routerLink]="['settings']">
+            <!-- Span for Settings text -->
             <span [style.color]="isSettingsActive ? '#12052e' : '#949494'">
                 Settings
             </span>
         </button>
     </div>
-    </mat-toolbar>
+
+</mat-toolbar>

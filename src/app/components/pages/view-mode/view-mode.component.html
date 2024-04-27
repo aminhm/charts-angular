@@ -1,14 +1,19 @@
+<!-- 
+  Represents the view-mode page which is also the default page
+-->
 <div class="container">
+    <!-- Row for Date Filter component -->
     <div class="row">
         <div class="col-lg-6">
+            <!-- Conditionally render Date Filter component if there are chart items -->
             <app-date-filter *ngIf="(chartItems$ | async)!.length > 0" ngSkipHydration></app-date-filter>
         </div>
     </div>
-    
-<div [style.borderColor]="chartModel.getChartDataColor()" class="chart-container" *ngFor="let chartModel of chartItems$ | async; let i = index">
 
-    
-<app-chart [isFilterEnabled]="true" [chartModel]="chartModel"></app-chart>
-
-</div>
+    <!-- Container for individual chart components -->
+    <div [style.borderColor]="chartModel.getChartDataColor()" class="chart-container"
+        *ngFor="let chartModel of chartItems$ | async; let i = index">
+        <!-- Render Chart component with filter enabled and pass chart model -->
+        <app-chart [isFilterEnabled]="true" [chartModel]="chartModel"></app-chart>
+    </div>
 </div>

@@ -1,98 +1,102 @@
-
-.col-md-2{
+.col-md-2 {
     text-align: -webkit-center;
     align-content: center;
 }
 
-.col-md-10{
+.col-md-10 {
     padding-bottom: 10px;
 }
 
-.row{
+.row {
     text-align: -webkit-center;
     text-align: -moz-center;
     place-items: center;
     margin-top: 15px;
 }
 
-.chart-title-col,.chart-label-col,.chart-YaxisTitle-col{
+.chart-title-col,
+.chart-label-col,
+.chart-YaxisTitle-col {
     width: 75%;
     padding: 0;
 }
 
-.chart-title-row,.chart-label-row,.chart-YaxisTitle-row{
+.chart-title-row,
+.chart-label-row,
+.chart-YaxisTitle-row {
     justify-content: space-between;
 }
 
-.color-picker-col{
+.color-picker-col {
     width: 25%;
 }
 
 
-.remove-button{
+.remove-button {
     width: 100%;
     padding-top: 25px;
 }
 
-::ng-deep .t-wrapper{
+::ng-deep .t-wrapper {
     padding: 0 !important;
 }
 
-p{
+p {
     margin: 0;
     padding: 0;
 }
 
-.chart-type-col-title{
+.chart-type-col-title {
     text-align: end;
 }
 
-.chart-type-col-button{
+.chart-type-col-button {
     text-align: start;
 }
 
-.chart-type-row{
+.chart-type-row {
     text-align-last: center;
     margin-top: 25px;
 }
 
-button{
+button {
     margin: 0;
     width: 155px;
 }
 
-app-color-picker{
+app-color-picker {
     width: 65px;
     display: inline-grid;
-    
+
 }
 
-.data-insertion-title-row{
+.data-insertion-title-row {
     margin-top: 55px;
     margin-bottom: 15px;
 }
 
-.data-insertion-title-span{
+.data-insertion-title-span {
     font-weight: bold;
 }
 
-.field-container{
+.field-container {
     padding-top: 25px;
 }
 
-.date-remove-row{
+.date-remove-row {
     margin: 0 !important;
 }
 
-.remove-cancel-span{
+.remove-cancel-span {
     color: red;
     font-weight: bold;
 }
-.add-button{
+
+.add-button {
     margin-top: 25px;
 }
 
-.chart-in-header{
+.chart-in-header {
     display: block;
     position: sticky;
     top: 0;
@@ -100,10 +104,10 @@ app-color-picker{
     background: white;
 }
 
-.background-data-color-row{
+.background-data-color-row {
     margin-top: 25px;
 }
 
-.col-md-8{
+.col-md-8 {
     padding: 0;
 }

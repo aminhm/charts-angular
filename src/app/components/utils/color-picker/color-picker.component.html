@@ -1,24 +1,21 @@
-<tui-hosted-dropdown
-    tuiDropdownAlign="left"
-    [content]="picker"
-    [tuiDropdownMaxHeight]="999"
->
-    <button
-        appearance=""
-        automation-id="color-picker__button"
-        tuiButton
-        type="button"
-        [style.background]="background"
-        [style.color]="background"
-    >
+<!-- 
+    Represents a hosted dropdown for color selection.
+    Uses TUI components for dropdown and color selection.
+-->
+<tui-hosted-dropdown tuiDropdownAlign="left" [content]="picker" [tuiDropdownMaxHeight]="999">
+    <!-- 
+        Button triggering the dropdown. 
+        Displays the current selected color and opens the dropdown on click.
+    -->
+    <button appearance="" automation-id="color-picker__button" tuiButton type="button" [style.background]="background"
+        [style.color]="background">
     </button>
 </tui-hosted-dropdown>
-<ng-template
-    #picker
-    let-activeZone
->
-    <tui-color-selector
-        [tuiActiveZoneParent]="activeZone"
-        [(color)]="color"
-    ></tui-color-selector>
+
+<!-- 
+    Template for the color picker dropdown content.
+    Contains a TUI color selector component for choosing colors.
+-->
+<ng-template #picker let-activeZone>
+    <tui-color-selector [tuiActiveZoneParent]="activeZone" [(color)]="color"></tui-color-selector>
 </ng-template>

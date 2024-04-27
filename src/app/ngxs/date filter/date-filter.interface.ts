@@ -1,6 +1,9 @@
 import { TuiDay } from "@taiga-ui/cdk";
 
-export interface DateFilterInterface{
+/**
+ * Interface defining the structure of the date filter.
+ */
+export interface DateFilterInterface {
     from: TuiDay,
     to: TuiDay
 }

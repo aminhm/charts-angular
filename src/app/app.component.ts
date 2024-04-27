@@ -1,3 +1,7 @@
+/**
+ * This component serves as the root component of the application, managing its main structure and functionality.
+ * It incorporates various modules, components, services, and providers to handle chart data and application features.
+ */
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { TUI_SANITIZER, TuiAlertModule, TuiDialogModule, TuiRootModule } from "@taiga-ui/core";
 import { Component, HostListener } from '@angular/core';
@@ -14,54 +18,73 @@ import { SideNavComponent } from "./components/shared/side-nav/side-nav.componen
 import { CommonModule } from "@angular/common";
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
-    imports: [
-      RouterOutlet, 
-      ViewModeComponent, 
-      TuiRootModule, 
-      TuiDialogModule, 
-      TuiAlertModule,
-      HeaderComponent,
-      SideNavComponent,
-      CommonModule
-    ],
-    providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}]
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  imports: [
+    RouterOutlet,
+    ViewModeComponent,
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule,
+    HeaderComponent,
+    SideNavComponent,
+    CommonModule
+  ],
+  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }]
 })
 export class AppComponent {
+  /**
+   * Title of the application.
+   */
   title = 'charts-angular';
+  /**
+   * Width of the window.
+   */
   windowWidth!: number;
-  showSidebar!:boolean;
+  /**
+   * Flag to indicate whether to show the sidebar.
+   */
+  showSidebar!: boolean;
+  /**
+   * Subscription for fetching chart data from the API.
+   */
   dataSubscription!: Subscription;
+  /**
+   * Chart data model fetched from the API.
+   */
   chartDataModelFromAPI: ChartModel = new ChartModel();
 
-
   constructor(private chartDataService: ChartDataAPIService,
-    private store: Store){
-      
-    }
+    private store: Store) { }
 
-  ngOnInit(){
+
+  ngOnInit() {
     this.windowWidth = window.innerWidth;
-    this.chooseHeader()
-    this.getChartDataFromApi()
+    this.chooseHeader();
+    this.getChartDataFromApi();
   }
+
+  /**
+   * Fetches chart data from the API.
+   */
   getChartDataFromApi(): void {
     this.dataSubscription = this.chartDataService.getChartData().subscribe({
       next: (data) => {
-        for (let item of data[1]){
-          this.chartDataModelFromAPI.addToChartDataDate(new TuiDay(+item.date,1,1))
+        // Process data and populate chart data model
+
+        for (let item of data[1]) {
+          this.chartDataModelFromAPI.addToChartDataDate(new TuiDay(+item.date, 1, 1))
           this.chartDataModelFromAPI.addToChartValues(parseFloat(item.value.toFixed(2)))
         }
         this.chartDataModelFromAPI.setChartDataDates(this.chartDataModelFromAPI.getChartDataDates().reverse())
         this.chartDataModelFromAPI.setChartDataValues(this.chartDataModelFromAPI.getChartDataValues().reverse())
-        if(data[1][0]){
+        if (data[1][0]) {
           this.chartDataModelFromAPI.setChartDataLabel(data[1][0].country.value)
           this.chartDataModelFromAPI.setChartYaxisTitle(data[1][0].indicator.value)
         }
-        if(data[0]){
+        if (data[0]) {
           this.chartDataModelFromAPI.setChartTitle(data[0].sourcename)
         }
         this.chartDataModelFromAPI.setChartDataColor('#2cb0ff')
@@ -75,31 +98,48 @@ export class AppComponent {
         console.error(error);
       },
       complete: () => {
+        // After fetching data, set chart options and add chart
         this.chartDataModelFromAPI.setChartOptions()
         this.addChart(this.chartDataModelFromAPI)
       }
     });
   }
-  addChart(chartModel:ChartModel){
+
+  /**
+   * Adds chart to the application state.
+   * @param chartModel The chart model to be added.
+   */
+  addChart(chartModel: ChartModel) {
     this.store.dispatch(new AddChartAction(chartModel));
   }
+
+  /**
+   * Handles cleanup when component is destroyed.
+   */
   ngOnDestroy(): void {
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
   }
 
+  /**
+   * Event listener for window resize.
+   * @param event The resize event.
+   */
   @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
+  onResize(event: any) {
     this.windowWidth = window.innerWidth;
-    this.chooseHeader()
+    this.chooseHeader();
   }
 
-  chooseHeader(){
-    if(this.windowWidth<700){
+  /**
+   * Determines whether to show the sidebar based on window width.
+   */
+  chooseHeader() {
+    if (this.windowWidth < 700) {
       this.showSidebar = true;
     }
-    else{
+    else {
       this.showSidebar = false;
     }
   }

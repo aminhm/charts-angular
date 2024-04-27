@@ -1,53 +1,56 @@
+<!-- 
+  Represents the settings page
+-->
 <div class="container">
+    <!-- Row for the button to add a new chart -->
     <div class="row add-chart-button-row">
         <div class="col-lg-6">
-            <button
-size="l"
-tuiButton
-tuiHintDirection="top"
-type="button"
-(click)="openAddChartModal()"
->
-Add Chart +
-</button>
+            <!-- Button to open the modal for adding a new chart -->
+            <button size="l" tuiButton tuiHintDirection="top" type="button" (click)="openAddChartModal()">
+                Add Chart +
+            </button>
         </div>
     </div>
 
-<app-add-chart *ngIf="isAddChartModalOpen"></app-add-chart>
-<app-edit-chart *ngIf="isEditChartModalOpen" [indexChartDataModelForEdit]="indexChartDataModelForEdit" [chartDataModelForEdit]="chartDataModelForEdit"></app-edit-chart>
+    <!-- Modal for adding a new chart -->
+    <app-add-chart *ngIf="isAddChartModalOpen"></app-add-chart>
 
-<div class="chart-container" *ngFor="let chartModel of chartItems$ | async; let i = index">
-    <div [style.borderColor]="chartModel.getChartDataColor()" class="row chart-container-row">
-        <div class="col-lg-9">
-            <app-chart [chartModel]="chartModel"></app-chart>
-        </div>
-        <div class="col-lg-3 edit-remove-col">
-            <div class="row">
-                <button (click)="removeChart(i)"
-            appearance="flat"
-            tuiButton
-            type="button"
-            class="tui-space_right-3 tui-space_bottom-3"
-        >
-            <span class="remove-span">
-                Remove
-            </span>
-        </button>
-            </div>
-            <div class="row">
-                <button
-                (click)="openEditChartModal(chartModel,i)"
-    appearance="accent"
-    tuiButton
-    type="button"
-    class="tui-space_right-3 tui-space_bottom-3"
->
-    Edit
-</button>
+    <!-- Modal for editing an existing chart -->
+    <app-edit-chart *ngIf="isEditChartModalOpen" [indexChartDataModelForEdit]="indexChartDataModelForEdit"
+        [chartDataModelForEdit]="chartDataModelForEdit"></app-edit-chart>
 
+    <!-- Container for displaying existing charts -->
+    <div class="chart-container" *ngFor="let chartModel of chartItems$ | async; let i = index">
+        <!-- Row for each individual chart -->
+        <div [style.borderColor]="chartModel.getChartDataColor()" class="row chart-container-row">
+            <!-- Column for displaying the chart -->
+            <div class="col-lg-9">
+                <!-- Component for displaying the chart -->
+                <app-chart [chartModel]="chartModel"></app-chart>
             </div>
-        
+            <!-- Column for edit and remove buttons -->
+            <div class="col-lg-3 edit-remove-col">
+                <!-- Row for the remove button -->
+                <div class="row">
+                    <!-- Button to remove the chart -->
+                    <button (click)="removeChart(i)" appearance="flat" tuiButton type="button"
+                        class="tui-space_right-3 tui-space_bottom-3">
+                        <!-- Text indicating removal action -->
+                        <span class="remove-span">
+                            Remove
+                        </span>
+                    </button>
+                </div>
+                <!-- Row for the edit button -->
+                <div class="row">
+                    <!-- Button to open the modal for editing the chart -->
+                    <button (click)="openEditChartModal(chartModel,i)" appearance="accent" tuiButton type="button"
+                        class="tui-space_right-3 tui-space_bottom-3">
+                        <!-- Text indicating edit action -->
+                        Edit
+                    </button>
+                </div>
+            </div>
         </div>
-</div>
-</div>
+    </div>
 </div>
