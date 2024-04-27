@@ -4,13 +4,15 @@ import { TuiDayRange, TuiDay } from '@taiga-ui/cdk';
 import { Store } from '@ngxs/store';
 import { ChangeDateFilterAction } from '../../../ngxs/date filter/date-filter.action';
 import { TuiInputDateRangeModule } from '@taiga-ui/kit';
+import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-date-filter',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    TuiInputDateRangeModule
+    TuiInputDateRangeModule,
+    TuiTextfieldControllerModule,
   ],
   templateUrl: './date-filter.component.html',
   styleUrl: './date-filter.component.scss'

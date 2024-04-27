@@ -16,8 +16,8 @@
         [formGroup]="forms"
         (ngSubmit)="observer.complete()"
     >
-    <div class="row">
-        <div class="col-md-10">
+    <div class="row chart-title-row">
+        <div class="col-md-10 chart-title-col">
     <tui-input
             formControlName="chartTitleForm"
             tuiAutoFocus
@@ -25,14 +25,14 @@
             Chart Title:
         </tui-input>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 color-picker-col">
             <app-color-picker [color]="titleColor" (colorEvent) = "receiveTitleColorFromChild($event)"></app-color-picker>
         </div>
     </div>
         
     
-    <div class="row">
-        <div class="col-md-10">
+    <div class="row chart-YaxisTitle-row">
+        <div class="col-md-10 chart-YaxisTitle-col">
             <tui-input
             formControlName="chartYaxisForm"
             tuiAutoFocus
@@ -40,15 +40,15 @@
             Chart Y Axis Title:
         </tui-input>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 color-picker-col">
             <app-color-picker [color]="yAxisColor" (colorEvent) = "receiveYaxisColorFromChild($event)"></app-color-picker>
         </div>
     </div>
         
         
     
-    <div class="row">
-        <div class="col-md-10">
+    <div class="row chart-label-row">
+        <div class="col-md-10 chart-label-col">
             <tui-input
             formControlName="chartLabelForm"
             tuiAutoFocus
@@ -56,7 +56,7 @@
             Chart Data Label:
         </tui-input>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 color-picker-col">
             <app-color-picker [color]="labelColor" (colorEvent) = "receiveLabelColorFromChild($event)"></app-color-picker>
         </div>
     </div>

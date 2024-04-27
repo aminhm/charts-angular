@@ -41,10 +41,10 @@ openAddChartModal(): void {
   this.isAddChartModalOpen = false;
   setTimeout(() => {
     this.isAddChartModalOpen = true;
-  }, 500);
+  }, 100);
   setTimeout(() => {
     this.addChartComponent.isAddChartModalOpen=true;
-  }, 500);
+  }, 100);
   
 }
 
@@ -55,10 +55,10 @@ openEditChartModal(chartDataModelForEdit:ChartModel,index : number): void {
   setTimeout(() => {
     this.isEditChartModalOpen = true;
     
-  }, 500);
+  }, 5);
   setTimeout(() => {
     this.editChartComponent.isAddChartModalOpen=true;
-  }, 500);
+  }, 5);
 }
 
 

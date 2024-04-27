@@ -10,8 +10,22 @@
 
 .row{
     text-align: -webkit-center;
+    text-align: -moz-center;
     place-items: center;
     margin-top: 15px;
+}
+
+.chart-title-col,.chart-label-col,.chart-YaxisTitle-col{
+    width: 75%;
+    padding: 0;
+}
+
+.chart-title-row,.chart-label-row,.chart-YaxisTitle-row{
+    justify-content: space-between;
+}
+
+.color-picker-col{
+    width: 25%;
 }
 
 .remove-button{
