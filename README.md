@@ -1,27 +1,39 @@
-# ChartsAngular
+# charts-angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+## Overview
+This project is a Single Page Web Application designed to display a list of charts using the latest features of Angular.
 
-## Development server
+## Features
+- Responsive UI design
+- Two separate routes: "View mode" and "Settings"
+- Date range filter for charts in "View mode"
+- Ability to add, edit, and remove charts in "Settings" using modal windows
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Libraries Used
+- **RxJs:** Reactive Extensions for JavaScript
+- **Angular Material / Ng Bootstrap / Taiga UI:** UI component libraries for Angular
+- **Highcharts:** Interactive JavaScript charts library
+- **NgXs:** State management libraries for Angular
 
-## Code scaffolding
+## Installation
+To install the necessary packages, run:
+```
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
+To start the application, run:
+```
+npm start
+```
 
-## Build
+## Routes
+### View mode
+- Displays a list of charts
+- Includes a date range filter for filtering charts
+- Date range filter is hidden if there are no charts
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Settings
+- Allows users to add, edit, and remove charts
+- Modal windows are used for adding/editing charts
+- Users can change the name, type (line, spline, area), and color of each chart
