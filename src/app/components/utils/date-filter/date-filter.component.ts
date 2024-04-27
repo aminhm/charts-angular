@@ -11,14 +11,14 @@ import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-date-filter',
-  standalone: true, // Indicates that this component is self-sufficient and doesn't rely on external data binding
+  standalone: true,
   imports: [
     ReactiveFormsModule,
     TuiInputDateRangeModule,
     TuiTextfieldControllerModule,
   ],
-  templateUrl: './date-filter.component.html', // The HTML template file for this component
-  styleUrl: './date-filter.component.scss' // The SCSS style file for this component
+  templateUrl: './date-filter.component.html',
+  styleUrl: './date-filter.component.scss'
 })
 export class DateFilterComponent {
   // Form group to manage date selection

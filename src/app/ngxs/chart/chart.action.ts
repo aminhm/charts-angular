@@ -5,10 +5,6 @@ import { ChartModel } from "./chart.model";
  */
 export class AddChartAction {
   static readonly type = 'Add Chart';
-  /**
-   * Constructs a new AddChartAction.
-   * @param chartModel The chart model to be added.
-   */
   constructor(public chartModel: ChartModel) { }
 }
 
@@ -17,11 +13,6 @@ export class AddChartAction {
  */
 export class UpdateChartAction {
   static readonly type = 'Update Chart';
-  /**
-   * Constructs a new UpdateChartAction.
-   * @param chartModel The updated chart model.
-   * @param index The index of the chart to be updated.
-   */
   constructor(public chartModel: ChartModel, public index: number) { }
 }
 
@@ -30,9 +21,5 @@ export class UpdateChartAction {
  */
 export class RemoveChartAction {
   static readonly type = 'Remove Chart';
-  /**
-   * Constructs a new RemoveChartAction.
-   * @param index The index of the chart to be removed.
-   */
   constructor(public index: number) { }
 }

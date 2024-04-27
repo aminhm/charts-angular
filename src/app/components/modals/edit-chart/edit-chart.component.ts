@@ -126,13 +126,12 @@ export class EditChartComponent {
 
 
   ngOnInit() {
-    // Clone chart data model
+    // Creating a deep copy of the chart model
     this.chartModel = _.cloneDeep(this.chartDataModelForEdit);
     // Initialize form controls with chart data
     this.forms.controls.chartLabelForm.setValue(this.chartDataModelForEdit.getChartDataLabel());
     this.forms.controls.chartTitleForm.setValue(this.chartDataModelForEdit.getChartTitle());
     this.forms.controls.chartYaxisForm.setValue(this.chartDataModelForEdit.getChartYaxisTitle());
-    // Populate dynamic form fields
     this.dateFields = this.data.dateForms.get('dateFormsFields') as FormArray;
     this.valueFields = this.data.valueForms.get('valueFormsFields') as FormArray;
     for (let i = 0; i < this.chartDataModelForEdit.getChartDataDates().length; i++) {

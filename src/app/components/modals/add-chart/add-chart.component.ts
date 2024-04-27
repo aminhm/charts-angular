@@ -111,9 +111,7 @@ export class AddChartComponent {
     public sharedService: SharedService, private store: Store) {
   }
 
-  /**
-   * Lifecycle hook called after Angular has initialized all data-bound properties of a directive.
-   */
+
   ngOnInit() {
     // Initialize form arrays for date and value fields
     this.dateFields = this.data.dateForms.get('dateFormsFields') as FormArray;
